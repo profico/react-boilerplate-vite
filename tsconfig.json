@@ -1,4 +1,5 @@
 {
+  "extends": "./tsconfig.paths.json",
   "compilerOptions": {
     "target": "es6",
     "allowJs": true,
@@ -17,8 +18,10 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "types": ["react", "jest", "node"],
     "baseUrl": "src",
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "typeRoots": ["./typings.d.ts", "node_modules/@types"]
   },
   "include": ["src"],
+  "references": [{ "path": "./tsconfig.vite.json" }],
   "exclude": ["node_modules", "build", "dist"]
 }

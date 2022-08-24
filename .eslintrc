@@ -22,6 +22,10 @@
       "pragma": "React"
     },
     "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true,
+        "project": "./"
+      },
       "node": {
         "extensions": [".js", ".jsx", ".ts", ".tsx", ".json"],
         "moduleDirectory": ["node_modules", "src/"]

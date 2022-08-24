@@ -24,7 +24,7 @@ export class EnvironmentConfig {
   private static buildConfig(): Config {
     const APP_ENV = process.env.REACT_APP_ENV;
     // eslint-disable-next-line prefer-destructuring
-    const NODE_ENV = process.env.NODE_ENV;
+    const NODE_ENV = process.env.NODE_ENV || 'development';
     const settings: Record<string, any> = {};
 
     Object.keys(process.env).forEach(key => {

@@ -1,5 +1,5 @@
 {
-  "name": "@profico/react-boilerplate",
+  "name": "@profico/react-boilerplate-vite",
   "version": "1.0.0",
   "private": true,
   "author": {
@@ -9,15 +9,13 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "^5.0.1"
+    "vite": "^3.0.9"
   },
   "scripts": {
     "prepare": "husky install",
-    "start": "node scripts/run.js --cmd=start",
-    "build": "node scripts/run.js --cmd=build",
-    "test": "react-scripts test",
-    "test:cov": "yarn test --coverage",
-    "test:ci": "CI=true yarn test",
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
     "lint:base": "eslint --ext .ts,.tsx src/",
     "lint": "pretty-quick && yarn lint:base --fix --cache --cache-location=./node_modules/.cache/",
     "upgrade": "yarn upgrade"
@@ -50,12 +48,15 @@
     "@types/react-dom": "^18.0.6",
     "@typescript-eslint/eslint-plugin": "^5.34.0",
     "@typescript-eslint/parser": "^5.34.0",
+    "@vitejs/plugin-react": "^2.0.1",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.6",
     "enzyme-to-json": "^3.6.2",
+    "eslint": "^8.22.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-react": "^1.1.7",
+    "eslint-import-resolver-typescript": "^3.5.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-prettier": "^4.2.1",
