@@ -77,7 +77,10 @@
     "import/namespace": 2,
     "import/no-cycle": [2, { "maxDepth": 1 }],
     "import/no-dynamic-require": ["off"],
-    "import/no-extraneous-dependencies": ["error", { "devDependencies": ["**/*.test.tsx", "src/setupTests.ts"] }],
+    "import/no-extraneous-dependencies": [
+      "error",
+      { "devDependencies": ["**/*.test.tsx", "src/setupTests.ts", "vite.config.ts"] }
+    ],
     "import/prefer-default-export": ["off"],
     "jsx-a11y/label-has-associated-control": [
       "error",
