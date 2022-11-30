@@ -100,13 +100,12 @@ Additional rules that can be applied to have an universal style of coding across
   ```
   src
   └── contexts
-  └──── index.ts (can be used to export all contexts from this directory - not required)
   └──── AuthContext
   └─────── __tests__
   └────────── AuthContext.test.tsx
   └─────── AuthContext.tsx
-  └─────── withAuth.tsx (if necessary)
-  └─────── useAuth.ts (if necessary)
+  └─────── withAuth.tsx (if necessary, can be exported from AuthContext as well)
+  └─────── useAuth.ts (if necessary, can be exported from AuthContext as well)
   └─────── index.ts
   ```
 
@@ -116,7 +115,6 @@ Additional rules that can be applied to have an universal style of coding across
   ```
   src
   └── hooks
-  └──── index.ts (can be used to export all hooks from this directory - not required)
   └──── useDocumentTitle.ts
   ```
 
