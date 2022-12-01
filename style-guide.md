@@ -322,9 +322,160 @@ export default useSomething;
 
 <br />
 
-# Other
+# Event naming
 
----
+Events should start with the `on` prefix whereas their respective event handlers should start with the `handle` prefix.
+
+Both prefixes can be omitted if the name of the function clearly indicates what it does. Make sure the names of the events and handlers are easy to read and that the word flow is natural.
+
+General naming structure can be described like this:
+
+> **Events**: `on<subject?><action>` where `subject` is optional because sometimes it can be implied what the event refers to.
+> <br>
+> Examples: `onClick`, `onArrowClick`, `toggleLoading`
+
+> **Event handlers**: `handle<subject?><action>` where `subject` is optional because sometimes it can be implied what the handler refers to.
+> <br>
+> Examples: `handleClick`, `handleTableRowClick`, `submitForm`, `closeModal`
+
+  <br>
+
+```tsx
+import React from 'react';
+
+interface ComponentProps {
+  // Event
+  onClick(id: string): void;
+}
+
+const Component: React.FC<ComponentProps> = ({ onClick }) => {
+  // Event handler
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const {
+      currentTarget: { id },
+    } = e;
+
+    onClick(id);
+  };
+
+  return (
+    <button onClick={handleClick} id="some-id">
+      Click me
+    </button>
+  );
+};
+```
+
+```tsx
+import React from 'react';
+
+interface ModalProps {
+  // Event
+  onClose(): void;
+}
+
+const Modal: React.FC<ModalProps> = ({ onClose }) => {
+  // Event handler
+  const handleClose = (e: React.MouseEvent<HTMLButtonElement>) => {
+    // do some side effects
+    onClose();
+  };
+
+  return (
+    <div>
+      <div>
+        <h3>Modal title</h3>
+        {/* If we don't need to to any side effects we can pass in `onClose` directly to `onClick` */}
+        <button onClick={handleClose}>X</button>
+      </div>
+      <div>Modal content</div>
+    </div>
+  );
+};
+```
+
+```tsx
+import React from 'react';
+
+const Counter: React.FC<CounterProps> = () => {
+  const [count, setCount] = useState<number>(0);
+
+  const decrementCount = () => {
+    setCount(prev => prev - 1);
+  };
+
+  const incrementCount = () => {
+    setCount(prev => prev - 1);
+  };
+
+  // Or if we want to have a single handler for decrementing/incrementing
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const {
+      currentTarget: { value },
+    } = e;
+
+    setCount(prev => (action === 'decrement' ? prev - 1 : prev + 1));
+  };
+
+  return (
+    <div>
+      <button
+        onClick={decrementCount}
+        // onClick={handleClick}
+        // value="decrement"
+      >
+        -
+      </button>
+      <div>{count}</div>
+      <button
+        onClick={incrementCount}
+        // onClick={handleClick}
+        // value="increment"
+      >
+        +
+      </button>
+    </div>
+  );
+};
+```
+
+<br />
+
+# Color naming
+
+When defining colors, we should follow the Material Color System naming convention.
+Alternative colors (colors that are not defined as primary, secondary, error, success, etc.) should be named in the following way:
+
+`[color]-[weight]` -> where the color represents the color name (red, green, purple, etc.) and and weight represents a number between 100 and 900 (with a step of 100; or in case there are really similar colors, a step of 50), with 100 being the lightest variant and 900 being the darkest variant.
+
+> https://material.io/design/color/the-color-system.html
+
+<br />
+
+# CSS naming
+
+When using CSS (or SCSS, modules, etc.), the root element in the component body should have a class called `.container`. Optionally, it can be wrapped with `.root` class for increased selector specificity. This also allows for an easier overview when inspecting elements since the class name is constructed from the file name + class name + hash.
+
+```tsx
+import React from 'react';
+
+import styles from './my_component.module.scss';
+
+const MyComponent: React.FC = () => (
+  <div className={styles.container}>
+    <button className={styles.button}>Click me</button>
+  </div>
+);
+
+// When inspecting element
+<div class="my_component_container__h87f3">
+  <button class="my_component_button__390f2f">Click me</button>
+</div>;
+```
+
+<br />
+
+# Other
 
 - There should be an empty line before `return` statements - makes it more visible
 - Use of hooks is strongly encouraged
@@ -335,143 +486,6 @@ export default useSomething;
 - If you need to define multiple helper functions/interfaces/constants (let's call them `"helpers"`) that are scoped for a certain component, create a new file
   inside the component directory called `<ComponentName>.helpers.ts` (or `<ComponentName>.helpers.tsx` if you need to render elements) and export
   the helpers from there. That way we'll also enable subcomponents to use those helpers without having to deal with circular dependency
-- When using CSS (or SCSS) modules, root element in the component body should have a class called `.container`. Optionally, it can be wrapped with `.root` class for increased selector specificity. This also allows for an easier overview when inspecting elements since the class name is constructed from the file name + class name + hash.
-
-  ```tsx
-  import React from 'react';
-
-  import styles from './my_component.module.scss';
-
-  const MyComponent: React.FC = () => (
-    <div className={styles.container}>
-      <button className={styles.button}>Click me</button>
-    </div>
-  );
-
-  // When inspecting element
-  <div class="my_component_container__h87f3">
-    <button class="my_component_button__390f2f">Click me</button>
-  </div>;
-  ```
-
-- When defining colors, we should follow the Material Color System naming convention.
-  Alternative colors (colors that are not defined as primary, secondary, error, success, etc.) should be named in the following way:
-
-  `[color]-[weight]` -> where the color represents the color name (red, green, purple, etc.) and and weight represents a number between 100 and 900 (with a step of 100; or in case there are really similar colors, a step of 50), with 100 being the lightest variant and 900 being the darkest variant.
-
-  > https://material.io/design/color/the-color-system.html
-
 - Required props should be listed before optional ones
-
-- Events should start with the `on` prefix; event handlers should start with the `handle` prefix; both prefixes can be omitted if the name of the function clearly indicates what it does. Make sure the names of the events and handlers are easy to read and that the word flow is natural. General naming structure can be described like this:
-
-  > **Events**: `on<subject?><action>` where `subject` is optional because sometimes it can be implied what the event refers to.
-  > <br>
-  > Examples: `onClick`, `onArrowClick`, `toggleLoading`
-
-  > **Event handlers**: `handle<subject?><action>` where `subject` is optional because sometimes it can be implied what the handler refers to.
-  > <br>
-  > Examples: `handleClick`, `handleTableRowClick`, `submitForm`, `closeModal`
-
-  <br>
-
-  ```tsx
-  import React from 'react';
-
-  interface ComponentProps {
-    // Event
-    onClick(id: string): void;
-  }
-
-  const Component: React.FC<ComponentProps> = ({ onClick }) => {
-    // Event handler
-    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-      const {
-        currentTarget: { id },
-      } = e;
-
-      onClick(id);
-    };
-
-    return (
-      <button onClick={handleClick} id="some-id">
-        Click me
-      </button>
-    );
-  };
-  ```
-
-  ```tsx
-  import React from 'react';
-
-  interface ModalProps {
-    // Event
-    onClose(): void;
-  }
-
-  const Modal: React.FC<ModalProps> = ({ onClose }) => {
-    // Event handler
-    const handleClose = (e: React.MouseEvent<HTMLButtonElement>) => {
-      // do some side effects
-      onClose();
-    };
-
-    return (
-      <div>
-        <div>
-          <h3>Modal title</h3>
-          {/* If we don't need to to any side effects we can pass in `onClose` directly to `onClick` */}
-          <button onClick={handleClose}>X</button>
-        </div>
-        <div>Modal content</div>
-      </div>
-    );
-  };
-  ```
-
-  ```tsx
-  import React from 'react';
-
-  const Counter: React.FC<CounterProps> = () => {
-    const [count, setCount] = useState<number>(0);
-
-    const decrementCount = () => {
-      setCount(prev => prev - 1);
-    };
-
-    const incrementCount = () => {
-      setCount(prev => prev - 1);
-    };
-
-    // Or if we want to have a single handler for decrementing/incrementing
-    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-      const {
-        currentTarget: { value },
-      } = e;
-
-      setCount(prev => (action === 'decrement' ? prev - 1 : prev + 1));
-    };
-
-    return (
-      <div>
-        <button
-          onClick={decrementCount}
-          // onClick={handleClick}
-          // value="decrement"
-        >
-          -
-        </button>
-        <div>{count}</div>
-        <button
-          onClick={incrementCount}
-          // onClick={handleClick}
-          // value="increment"
-        >
-          +
-        </button>
-      </div>
-    );
-  };
-  ```
 
 - _Add your recommendation here_...
