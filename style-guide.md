@@ -91,6 +91,7 @@ Additional rules that can be applied to have an universal style of coding across
   └────────── index.ts
   └─────── ComponentName.tsx
   └─────── withComponentName.tsx (HOC, if necessary)
+  └─────── useComponentName.ts (hook, if necessary)
   └─────── index.ts
   ```
 
