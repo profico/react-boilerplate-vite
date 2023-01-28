@@ -4,7 +4,7 @@ This project uses import alias which means every import is relative to the root 
 E.g. to import main `App` component the code would be `import App from 'components/App';`.
 Very useful down the road.
 
-> This boilerplate was set up according to the guidelines in https://github.com/profico/react-boilerplate/blob/master/style-guide.md. The structure below extends the base project structure defined in the style guide.
+> This boilerplate was set up according to the guidelines in https://github.com/profico/react-boilerplate-vite/blob/master/style-guide.md. The structure below extends the base project structure defined in the style guide.
 
 ```
 src
