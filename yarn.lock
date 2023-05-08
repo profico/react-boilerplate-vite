@@ -575,10 +575,10 @@
     tiny-glob "^0.2.9"
     tslib "^2.4.0"
 
-"@profi.co/eslint-plugin@^1.0.7":
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/@profi.co/eslint-plugin/-/eslint-plugin-1.0.7.tgz#0113b51b5de9691f9847e267c97045484e02d61a"
-  integrity sha512-myb49D8LPKhoZdxCU19Q3d1wl9y9pEePHkbJEnX44yW5Sc2nkWAI2oBM/f+aJWdOHQopRUVuWyALVSI8jKMdtQ==
+"@profi.co/eslint-plugin@^1.1.7":
+  version "1.1.7"
+  resolved "https://registry.yarnpkg.com/@profi.co/eslint-plugin/-/eslint-plugin-1.1.7.tgz#63fbe1f6317fd0277c56fa528ae31d62c2c74106"
+  integrity sha512-SPAIqtgLkL5N7OnAREqOx4TSdEHy8qiflIUfA5ph0N/CPaLvKi/YWhFkkKJUJD+AVbnE42VCADR1aJ0EBK8kCQ==
 
 "@sinclair/typebox@^0.24.1":
   version "0.24.28"
