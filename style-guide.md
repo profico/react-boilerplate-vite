@@ -7,9 +7,10 @@ We'll be using multiple Airbnb's style guides as "base" guides:
 - [CSS & Sass](https://github.com/airbnb/css)
 
 Since we're applying different eslint configs that are combined with Airbnb's [config](https://yarnpkg.com/package/eslint-config-airbnb), large number of these rules are already enforced.
-Additional rules that can be applied to have an universal style of coding across apps:
 
-<br />
+We're also applying the default React config specified by our `@profi.co/eslint-plugin` package. You can check it out at https://github.com/profico/eslint-plugin-profico.
+
+Additional rules that can be applied to have an universal style of coding across apps:
 
 ## Import statements
 
