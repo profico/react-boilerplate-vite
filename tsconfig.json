@@ -17,7 +17,7 @@
     "jsx": "react-jsx",
     "experimentalDecorators": true,
     "lib": ["dom", "dom.iterable", "esnext"],
-    "types": ["react", "jest", "node"],
+    "types": ["react", "node"],
     "baseUrl": "src",
     "noFallthroughCasesInSwitch": true,
     "typeRoots": ["./typings.d.ts", "node_modules/@types"]
